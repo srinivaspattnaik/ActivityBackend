@@ -2,7 +2,7 @@ package com.stackroute.activitystream.dao;
 
 import java.util.List;
 
-
+//The comments given long back, still not incorporated.
 public interface SubscribeCircleDAO 
 {
 	public boolean subscribeToCircle(SubscribeCircle subscribeCircle);
