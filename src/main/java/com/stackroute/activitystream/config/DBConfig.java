@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.stackroute.activitystream.dao.*;
 
+////USE APPLICATION.PROPERTIES FILE INSTEAD OF JAVA CONFIGURATION  --- SPRING BOOT
+
 @Configuration
 @ComponentScan("com.stackroute.activitystream")
 @EnableTransactionManagement
@@ -50,6 +52,7 @@ public class DBConfig
 		sessionBuilder.addAnnotatedClass(Message.class);
 		
 		SessionFactory sessionFactory=sessionBuilder.buildSessionFactory();
+		//remove SOPs..  can use logger statements - AOP
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
 	}
