@@ -8,8 +8,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table
+
+
 public class Message
 {
+//add one more property, posted date.	
+	
+	
+	
+	
 	@Id
 	private int messageID;
 	
@@ -22,7 +29,6 @@ public class Message
 	private String senderID;
 	
 	private String receiverID;
-	
 	private String receiverCircleID;
 
 	public int getMessageID() 
