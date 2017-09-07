@@ -47,6 +47,7 @@ public class CircleDAOImpl implements CircleDAO
 	{
 		try
 		{
+		//ownly owner should able to remove circle.  change the logic
 			Session session=sessionFactory.openSession();
 			Circle circle=(Circle)session.get(Circle.class,circleID);
 			session.delete(circle);
@@ -67,6 +68,7 @@ public class CircleDAOImpl implements CircleDAO
 	{
 		try
 		{
+		//ownly owner should able to remove circle.  change the logic
 			sessionFactory.getCurrentSession().update(circle);
 			return true;
 		}
@@ -78,8 +80,12 @@ public class CircleDAOImpl implements CircleDAO
 
 	@Transactional
 	@Override
+	//as per the method name, get my circles.
+	//but it is return circles created by me.
+	//So, change the method name accordingly.
 	public List<Circle> getMyCircles(String emailid) 
 	{
+	//use hibernate criteria/restrcitions
 		Query query=sessionFactory.getCurrentSession().createSQLQuery("select * from circle where circle_owner='"+emailid+"'");
 		List<Circle> listCircle=(List<Circle>)query.list();
 		return listCircle;
