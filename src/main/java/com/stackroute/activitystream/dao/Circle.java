@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @Table
 public class Circle
 {
+	
+	//circle id should be auto generated.  User will provide it.
 	@Id
 	@NotNull(message="Circle Id can not be Empty")
 	@Size(min=8, max=15)
@@ -27,6 +29,7 @@ public class Circle
 	
 	private String circle_owner;
 	
+	//description can be empty
 	@NotNull(message="Description can not be Empty")
 	private String description;
 	
