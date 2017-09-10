@@ -1,15 +1,21 @@
 package com.stackroute.activitystream.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Criteria;
 
 //import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.stackroute.activitystream.model.Circle;
 
 
 
@@ -43,17 +49,25 @@ public class CircleDAOImpl implements CircleDAO
 
 	@Transactional
 	@Override
-	public boolean removeCircle(String circleID) 
+	public boolean removeCircle(String circleID,String owner) 
 	{
 		try
 		{
-		//ownly owner should able to remove circle.  change the logic
+			
 			Session session=sessionFactory.openSession();
 			Circle circle=(Circle)session.get(Circle.class,circleID);
+			if(circle.getCircle_owner().equals(owner))
+			{
 			session.delete(circle);
 			session.flush();
 			session.close();
 			return true;
+			}
+			else
+			{
+			session.close();
+			return false;
+			}
 		}
 		catch(Exception e)
 		{
@@ -68,7 +82,6 @@ public class CircleDAOImpl implements CircleDAO
 	{
 		try
 		{
-		//ownly owner should able to remove circle.  change the logic
 			sessionFactory.getCurrentSession().update(circle);
 			return true;
 		}
@@ -80,14 +93,17 @@ public class CircleDAOImpl implements CircleDAO
 
 	@Transactional
 	@Override
-	//as per the method name, get my circles.
-	//but it is return circles created by me.
-	//So, change the method name accordingly.
-	public List<Circle> getMyCircles(String emailid) 
-	{
-	//use hibernate criteria/restrcitions
-		Query query=sessionFactory.getCurrentSession().createSQLQuery("select * from circle where circle_owner='"+emailid+"'");
-		List<Circle> listCircle=(List<Circle>)query.list();
+	public List<String> getMyOwnCirclesID(String emailid) 
+	{	
+		Session session=sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(Circle.class);
+		criteria.add(Restrictions.eq("circle_owner",emailid));
+		List<String> listCircle=new ArrayList<String>();
+		for(Circle circle:(List<Circle>)criteria.list())
+		{
+			listCircle.add(circle.getCircle_id());
+		}
+		
 		return listCircle;
 	}
 

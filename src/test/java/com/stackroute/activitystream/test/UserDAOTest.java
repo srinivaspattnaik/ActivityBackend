@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.stackroute.activitystream.dao.*;
+import com.stackroute.activitystream.model.User;
 
 public class UserDAOTest 
 {

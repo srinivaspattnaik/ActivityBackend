@@ -2,6 +2,8 @@ package com.stackroute.activitystream.dao;
 
 import java.util.List;
 
+import com.stackroute.activitystream.model.User;
+
 public interface UserDAO 
 {
 	public boolean addUser(User user);

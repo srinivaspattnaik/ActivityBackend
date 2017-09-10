@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.stackroute.activitystream.model.User;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

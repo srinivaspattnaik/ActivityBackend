@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.stackroute.activitystream.dao.*;
+import com.stackroute.activitystream.model.SubscribeCircle;
 
 public class SubscribeCircleDAOTest 
 {
@@ -40,8 +41,13 @@ static SubscribeCircleDAO subscribeCircleDAO;
 	@Test
 	public void getAllSubscribeCirclesTest()
 	{
-		List<SubscribeCircle> listSubscribeCircles=subscribeCircleDAO.getSubscribeCircles("nikita@gmail.com");
-		assertTrue("Not Subscribed to Any Circles",listSubscribeCircles.size()>0);
+		List<String> listSubscribeCirclesID=subscribeCircleDAO.getMySubscribeCirclesID("nikita@gmail.com");
+		assertTrue("Not Subscribed to Any Circles",listSubscribeCirclesID.size()>0);
+		
+		for(String circleId:listSubscribeCirclesID)
+		{
+			System.out.println(circleId);
+		}
 	}
 	
 
@@ -56,8 +62,8 @@ static SubscribeCircleDAO subscribeCircleDAO;
 	@Test
 	public void inValidSubscribeCirclesTest()
 	{
-		List<SubscribeCircle> listSubscribeCircles=subscribeCircleDAO.getSubscribeCircles("niet@gmail.com");
-		assertTrue("Problem in Subscribe Circles",listSubscribeCircles.isEmpty());
+		List<String> listSubscribeCirclesID=subscribeCircleDAO.getMySubscribeCirclesID("niet@gmail.com");
+		assertTrue("Problem in Subscribe Circles",listSubscribeCirclesID.isEmpty());
 	}
 	
 	@Test

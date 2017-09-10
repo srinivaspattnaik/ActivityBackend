@@ -13,6 +13,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.stackroute.activitystream.dao.*;
+import com.stackroute.activitystream.model.Circle;
+import com.stackroute.activitystream.model.Message;
+import com.stackroute.activitystream.model.SubscribeCircle;
+import com.stackroute.activitystream.model.User;
 
 ////USE APPLICATION.PROPERTIES FILE INSTEAD OF JAVA CONFIGURATION  --- SPRING BOOT
 
